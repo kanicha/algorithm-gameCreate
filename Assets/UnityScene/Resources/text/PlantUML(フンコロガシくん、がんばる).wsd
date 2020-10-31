@@ -1,0 +1,138 @@
+@startuml
+title 全体フローチャート
+repeat
+:タイトルシーン作成;
+:プレイヤー入力処理;
+:エネミーオブジェクト生成;
+:スコア作成;
+:ゲームシーン描画処理;
+:ゲームシーン推移;
+repeat while (メインゲームシーン)
+@enduml
+
+@startuml
+title タイトルシーン
+start
+:ハイスコア習得;
+:ハイスコア表示;
+if (Startボタン) then (yes)
+:ゲームシーン推移;
+end
+else (no)
+:ゲームウィンドウ終了;
+end
+@enduml
+
+@startuml
+title ゲームオーバーフラグ
+:ゲームオーバーフラグ宣言(bool型のfalseが好ましい);
+if (フラグtrue時処理) then (今までのスコアより大きかったら)
+:保存;
+end
+else (少なかったら)
+end
+
+@enduml
+
+@startuml
+title プレイヤー入力
+:キー入力受付;
+fork
+:上方向キー入力;
+:ジャンプ;
+fork again
+:右方向キー入力;
+:右へ移動;
+fork again
+:左方向キー入力;
+:減速;
+fork again
+:zキー入力;
+:ジャンプ;
+fork end
+end
+@enduml
+
+@startuml
+title エネミー作成
+:エネミー出現範囲指定;
+fork 
+:プレイヤー上部出現;
+fork again
+:プレイヤー下部出現;
+fork end
+
+:エネミーパターン出現;
+:エネミー当たり判定;
+end
+@enduml
+
+@startuml
+title エネミーパターン出現
+:エネミーのパターンを記したファイル(csv等)インポート;
+:画像ファイルを読み込みパターン化したファイルと同期;
+:座標右画面端出現;
+end
+@enduml
+
+@startuml
+title エネミー当たり判定
+:エネミーパターン出現関数呼び出し;
+:エネミー座標当たり判定追加;
+end
+@enduml
+
+@startuml
+title スコア作成 (引数 int score)
+:ゲーム開始からタイム習得;
+:score = 1fごとにスコア変数増加;
+:画面上部に表示;
+end
+@enduml
+
+@startuml
+title ゲームシーン描画処理
+:画面強制座標移動;
+:落とし穴作成;
+end
+@enduml
+
+@startuml
+title 画面強制座標移動
+:右から左へ座標移動;
+:scoreの数値によりスピードアップ;
+end
+@enduml
+
+@startuml
+title 落とし穴作成
+:落とし穴のパターンを記したファイル読み込み(csvとか);
+:パターン通りに自動作成;
+end
+@enduml
+
+@startuml
+title ゲームシーン推移
+:画面フェードアウト;
+:プレイヤー入力関数;
+:エネミー作成;
+:ゲームシーン描画処理;
+:スコア作成;
+end
+@enduml
+
+@startuml
+title メインゲームシーン
+if (ゲームスタート) 
+:スコア上昇しながらループ;
+end
+else
+fork
+:落とし穴に落ちる;
+fork again
+:敵に当たる;
+fork end
+:ゲームオーバーフラグ = true;
+:タイトルシーン推移;
+end
+@enduml
