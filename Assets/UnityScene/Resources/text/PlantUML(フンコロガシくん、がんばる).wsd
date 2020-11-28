@@ -13,6 +13,8 @@ repeat while (メインゲームシーン)
 @startuml
 title タイトルシーン
 start
+:スタートボタン作成;
+:Exitボタン作成;
 :ハイスコア習得;
 :ハイスコア表示;
 if (Startボタン) then (yes)
