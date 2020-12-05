@@ -1,15 +1,9 @@
+// Sakamaki Daiki
 #pragma once
 #include <Siv3D.hpp>
 
-/// <summary>
-/// シーン推移関数
-/// </summary>
-class SceneMgr
-{
-public:
-	// シーン推移用変数
-	using MovedScene = SceneManager<SceneName, HighScore>;
-};
+// シーン推移用クラス
+using MovedScene = SceneManager<SceneName, HighScore>;
 
 /// <summary>
 /// ゲームデータ管理関数
@@ -18,7 +12,7 @@ struct HighScore
 {
 public:
 	// ハイスコア保存用変数
-	int32 highScore;
+	int32 highScore = 0;
 };
 
 /// <summary>
