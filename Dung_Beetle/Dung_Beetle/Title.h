@@ -1,6 +1,5 @@
 // Sakamaki Daiki
 #pragma once
-#include <Siv3D.hpp>
 #include "SceneMgr.h"
 
 class Title : public MovedScene::Scene
@@ -27,7 +26,7 @@ public:
 	// コンストラクタを使用しシーン推移用初期化
 	Title(const InitData& init);
 	// タイトルアップデート関数(1f呼び出し)
-	void Update();
+	void update() override;
 	// タイトル描画関数
-	void Draw() const;
+	void draw() const override;
 };

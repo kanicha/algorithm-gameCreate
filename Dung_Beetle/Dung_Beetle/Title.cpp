@@ -1,5 +1,4 @@
 // Sakamaki Daiki
-#include <Siv3D.hpp>
 #include "Title.h"
 
 /// <summary>
@@ -15,7 +14,7 @@ Title::Title(const InitData& init)
 /// <summary>
 /// タイトル画面の内部処理
 /// </summary>
-void Title::Update()
+void Title::update()
 {
 	// startbuttonTrance変数にupdate関数を使い
 	// マウスオーバー時の処理毎フレーム取得
@@ -47,10 +46,11 @@ void Title::Update()
 /// <summary>
 /// タイトルシーン描画関数
 /// </summary>
-void Title::Draw() const
+void Title::draw() const
 {
+
 	// タイトル表示用変数
-	const String titleName = U"フンコロガシくん、がんばる";
+	const String titleName = U"フンコロガシくん\n\t\tがんばる";
 	// ゲームの中心取得
 	const Vec2 center(Scene::Center().x, 120);
 	// タイトル描画
@@ -60,10 +60,10 @@ void Title::Draw() const
 	/*ボタン描画処理*/
 	// スタートボタン枠組み描画処理
 	_startbuttom.draw(ColorF(1.0, _startbuttomTrance.value())).drawFrame(2);
-	// スタートボタン文字表示
-	FontAsset(U"Menu")(U"はじめる").drawAt(_startbuttom.center(), ColorF(0.25));
 	// Exitボタン枠組み描画処理
 	_exitbuttom.draw(ColorF(1.0, _exitbuttomTrance.value())).drawFrame(2);
+	// スタートボタン文字表示
+	FontAsset(U"Menu")(U"はじめる").drawAt(_startbuttom.center(), ColorF(0.25));
 	// Exitボタン文字表示
 	FontAsset(U"Menu")(U"やめる").drawAt(_exitbuttom.center(), ColorF(0.25));
 	// 各ボタン配置
