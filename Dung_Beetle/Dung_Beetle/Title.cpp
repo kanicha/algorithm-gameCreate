@@ -70,7 +70,11 @@ void Title::draw() const
 	Rect(0, 500, Scene::Width(), Scene::Height() - 500)
 		.draw(Arg::top = ColorF(0.0, 0.0), Arg::bottom = ColorF(0.0, 0.5));
 
+	/* 文字描画処理 */
 	// ハイスコア習得し、描画
 	const int32 highScore = getData().highScore;
-	FontAsset(U"Score")(U"スコア: {}"_fmt(highScore)).drawAt(Vec2(620, 550));
+	FontAsset(U"Score")(U"スコア: {}"_fmt(highScore)).drawAt(Vec2(670, 570));
+
+	// 作者名表示
+	FontAsset(U"Score")(U"(c)2021 Sakamaki Daiki").drawAt(Vec2(215, 570));
 }

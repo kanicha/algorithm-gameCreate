@@ -12,10 +12,8 @@ void Main()
 	System::SetTerminationTriggers(UserAction::CloseButtonClicked);
 	// ウィンドウタイトル設定
 	Window::SetTitle(U"フンコロガシくん、がんばる");
-	// ウィンドウを手動変更処理
-	Window::SetStyle(WindowStyle::Sizable);
 	// バックグラウンド背景追加
-	Scene::SetBackground(ColorF(0.2, 0.8, 0.4));
+	Scene::SetBackground(Palette::Lightskyblue);
 
 	// 表示用フォントを登録
 	FontAsset::Register(U"Title", 70, Typeface::Regular);
