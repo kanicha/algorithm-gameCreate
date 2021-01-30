@@ -6,7 +6,6 @@
 
 void Main()
 {
-
 	/* ウィンドウ処理関連 */
 	// Esc押し込みウィンドウ削除制限
 	System::SetTerminationTriggers(UserAction::CloseButtonClicked);

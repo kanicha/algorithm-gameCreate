@@ -3,30 +3,48 @@
 Game::Game(const InitData& init)
 	: IScene(init)
 {
-
+	// 各画像代入
+	playerImage = Texture(U"image/hunkorogashi.png");
+	enemyImage = Texture(U"image/Enemy1.png");
+	backGroundImage = Texture(U"image/haikei-aozora.png");
+	moveSpeed = 4;
+	pos = Vec2(300, 300);
 }
 
 void Game::update()
 {
 	// ボタン処理
+	PlayerInput();
 }
 
 void Game::draw() const
 {
+	// バックグラウンド画像配置
+	backGroundImage.draw(-50, -50);
 	// プレイヤー自機表示
-	PlayerDraw();
+	playerImage.drawAt(pos);
 	// エネミー描画処理
-	EnemyDraw();
+	enemyImage.drawAt(300, 100);
 }
 
-void Game::PlayerDraw() const
+/// <summary>
+/// プレイヤー入力関数
+/// </summary>
+void Game::PlayerInput() const
 {
-	const Texture playerImage(U"image/hunkorogashi.png");
-	playerImage.drawAt(300, 300);
-}
+	if (KeyLeft.pressed())
+	{
+		// 右へ移動
+		pos.x -= moveSpeed;
+	}
+	if (KeyRight.pressed())
+	{
+		// 左へ移動
+		pos.x += moveSpeed;
+	}
+	if (KeyUp.pressed())
+	{
+		// ジャンプ
 
-void Game::EnemyDraw() const
-{
-	const Texture enemyImage(U"image/k0073_1.png");
-	enemyImage.drawAt(270, 300);
+	}
 }

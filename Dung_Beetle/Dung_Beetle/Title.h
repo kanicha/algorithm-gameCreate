@@ -11,16 +11,16 @@ private:
 		// スタートボタンを画面の中央に配置
 		_startbuttom = Rect(Arg::center =
 		Scene::Center().movedBy(0, 0), 300, 60);
-		// Transition関数を使い変形(?)
-		Transition _startbuttomTrance = Transition(0.4s, 0.2s);
+	// Transition関数を使い変形(?)
+	Transition _startbuttomTrance = Transition(0.4s, 0.2s);
 
 	// Exitボタン処理
 	Rect _exitbuttom = 
 		// Exitボタンを画面の中央配置
 		_exitbuttom = Rect(Arg::center =
 		Scene::Center().movedBy(0, 100), 300, 60);
-		// Transition関数を使い変形
-		Transition _exitbuttomTrance = Transition(0.4s, 0.2s);
+	// Transition関数を使い変形
+	Transition _exitbuttomTrance = Transition(0.4s, 0.2s);
 
 public:
 	// コンストラクタを使用しシーン推移用初期化
