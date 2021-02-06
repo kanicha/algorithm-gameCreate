@@ -3,16 +3,24 @@
 Game::Game(const InitData& init)
 	: IScene(init)
 {
-	// 各画像代入
+	/* 変数初期化 & 代入 */
+	gameScore = 0;
+	gameEndFlag = false;
+
 	playerImage = Texture(U"image/hunkorogashi.png");
 	enemyImage = Texture(U"image/Enemy1.png");
 	backGroundImage = Texture(U"image/haikei-aozora.png");
+
 	moveSpeed = 4;
-	pos = Vec2(300, 300);
+	jumpPower = 5;
+	pos = Vec2(200, 200);
 }
 
 void Game::update()
 {
+	// ゲーム開始からの時間毎秒増加
+	gameScore++;
+
 	// ボタン処理
 	PlayerInput();
 }
@@ -42,9 +50,34 @@ void Game::PlayerInput() const
 		// 左へ移動
 		pos.x += moveSpeed;
 	}
-	if (KeyUp.pressed())
+	if (KeySpace.pressed())
 	{
 		// ジャンプ
-
+		pos.y -= jumpPower;
 	}
+	else
+	{
+		// ジャンプ中にキーを離したら
+		if (pos.y < 0 && !KeySpace.pressed())
+		{
+			pos.y *= 0.9f;
+		}
+	}
+
+}
+
+void Game::GameOver() const
+{
+	gameEndFlag = true;
+
+	if (gameEndFlag == true)
+	{
+		// ゲームオーバーの文字
+		// タイトル画面に戻す
+		// 最終スコアが今までのスコアより大きかったらスコア更新
+		getData().highScore = Max(getData().highScore, gameScore);
+	}
+
+
+
 }
