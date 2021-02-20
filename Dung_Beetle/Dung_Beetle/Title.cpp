@@ -73,7 +73,7 @@ void Title::draw() const
 	/* 文字描画処理 */
 	// ハイスコア習得し、描画
 	const int32 highScore = getData().highScore;
-	FontAsset(U"Score")(U"スコア: {}"_fmt(highScore)).drawAt(Vec2(670, 570));
+	FontAsset(U"Score")(U"最高スコア: {}"_fmt(highScore)).drawAt(Vec2(630, 570));
 
 	// 作者名表示
 	FontAsset(U"Score")(U"(c)2021 Sakamaki Daiki").drawAt(Vec2(215, 570));

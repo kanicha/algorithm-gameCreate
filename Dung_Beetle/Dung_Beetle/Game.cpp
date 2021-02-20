@@ -1,3 +1,4 @@
+// Sakamaki Daiki
 #include "Game.h"
 
 Game::Game(const InitData& init)
@@ -10,10 +11,11 @@ Game::Game(const InitData& init)
 	playerImage = Texture(U"image/hunkorogashi.png");
 	enemyImage = Texture(U"image/Enemy1.png");
 	backGroundImage = Texture(U"image/haikei-aozora.png");
+	blockImage = Texture(U"image/Block.png");
 
 	moveSpeed = 4;
 	jumpPower = 5;
-	pos = Vec2(200, 200);
+	pos = Vec2(30, 515);
 }
 
 /// <summary>
@@ -21,7 +23,7 @@ Game::Game(const InitData& init)
 /// </summary>
 void Game::update()
 {
-	// ゲーム開始からの時間毎秒増加
+	// ゲーム開始からの時間毎フレーム増加
 	gameScore++;
 
 	// ボタン処理
@@ -35,11 +37,48 @@ void Game::draw() const
 {
 	// バックグラウンド画像配置
 	backGroundImage.draw(-50, -50);
+	// ブロック描画
+	Blockdraw();
 	// プレイヤー自機表示
 	playerImage.drawAt(pos);
 	// エネミー描画処理
-	enemyImage.drawAt(300, 100);
+	Enemydraw();
+	// スコア表示の枠
+	Rect(0, 0, 1000, 60).draw(ColorF(0.0, 0.0, 0.0, 0.3));
+	// 現在のスコア表示
+	FontAsset(U"Score")(U"現在のスコア: {}"_fmt(gameScore)).drawAt(Vec2(400, 30));
 }
+
+/// <summary>
+/// ブロック描画関数
+/// </summary>
+void Game::Blockdraw() const
+{
+	// リスト等で管理したほうがよさそうだけれどリストわからなかったです。。。
+	blockImage.drawAt(30, 570);
+	blockImage.drawAt(90, 570);
+	blockImage.drawAt(150, 570);
+	blockImage.drawAt(210, 570);
+	blockImage.drawAt(270, 570);
+	blockImage.drawAt(330, 570);
+	blockImage.drawAt(390, 570);
+	blockImage.drawAt(450, 570);
+	blockImage.drawAt(510, 570);
+	blockImage.drawAt(570, 570);
+	blockImage.drawAt(630, 570);
+	blockImage.drawAt(690, 570);
+	blockImage.drawAt(750, 570);
+	blockImage.drawAt(810, 570);
+}
+
+/// <summary>
+/// エネミー描画関数
+/// </summary>
+void Game::Enemydraw() const
+{
+	enemyImage.drawAt(500, 400);
+	enemyImage.drawAt(400, 340);
+} 
 
 /// <summary>
 /// プレイヤー入力関数
@@ -66,7 +105,7 @@ void Game::PlayerInput() const
 		// ジャンプ中にキーを離したら
 		if (pos.y < 0 && !KeySpace.pressed())
 		{
-			pos.y *= 0.9f;
+			pos.y *= 0.8f;
 		}
 	}
 
@@ -86,7 +125,4 @@ void Game::GameOver() const
 		// 最終スコアが今までのスコアより大きかったらスコア更新
 		getData().highScore = Max(getData().highScore, gameScore);
 	}
-
-
-
 }
