@@ -15,9 +15,9 @@ private:
 	mutable Texture enemyImage;
 	mutable Texture backGroundImage;
 	// 移動速度
-	double moveSpeed;
+	mutable double moveSpeed;
 	// ジャンプ力
-	double jumpPower;
+	mutable double jumpPower;
 	// プレイヤーポジション
 	mutable Vec2 pos;
 

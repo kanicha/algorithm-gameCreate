@@ -16,6 +16,9 @@ Game::Game(const InitData& init)
 	pos = Vec2(200, 200);
 }
 
+/// <summary>
+/// アップデート関数
+/// </summary>
 void Game::update()
 {
 	// ゲーム開始からの時間毎秒増加
@@ -25,6 +28,9 @@ void Game::update()
 	PlayerInput();
 }
 
+/// <summary>
+/// 描画関数
+/// </summary>
 void Game::draw() const
 {
 	// バックグラウンド画像配置
@@ -66,6 +72,9 @@ void Game::PlayerInput() const
 
 }
 
+/// <summary>
+/// ゲームオーバー処理関数
+/// </summary>
 void Game::GameOver() const
 {
 	gameEndFlag = true;
